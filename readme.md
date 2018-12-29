@@ -134,12 +134,12 @@ SQL_SCHEMA='se' # 使用的数据库的名称（schema）
 对于Windows Server用户，请执行以下Powershell命令：
 
 ```
-(gc .\report.html) -replace '139.199.75.35', '你的服务器地址' | out-File report.html
+(gc .\report.html) -replace '255.255.255.255', '你的服务器地址' | out-File report.html
 ```
 对于Linux/Unix用户，请执行以下Shell命令：
 
 ```
-sed -i 's/139.199.75.35/您的服务器地址/g' ./report.html
+sed -i 's/255.255.255.255/您的服务器地址/g' ./report.html
 ```
 
 #### 2. 运行服务器：
