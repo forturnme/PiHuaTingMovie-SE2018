@@ -122,12 +122,13 @@ genre text
 1. 修改`servers`目录下的数据库配置`server_config.py`，其中各字段含义如下：
 
 ```
-SQL_USERNAME='root' # 数据库的用户名
-SQL_PASSWORD='hitse2018' # 数据库的密码
-SQL_ADDRESS='139.199.75.35' # 数据库的地址
+SQL_USERNAME='YOUR USERNAME' # 数据库的用户名
+SQL_PASSWORD='YOUR PASSWORD' # 数据库的密码
+SQL_ADDRESS='YOUR ADDRESS' # 数据库的地址
 SQL_PORT='3306' # 数据库的端口号
 SQL_SCHEMA='se' # 使用的数据库的名称（schema）
 ```
+
 2. 替换`servers`目录下`report.html`含有的服务器地址：
 
 对于Windows Server用户，请执行以下Powershell命令：
@@ -157,9 +158,9 @@ sed -i 's/139.199.75.35/您的服务器地址/g' ./report.html
 6. 修改`server_config.py`里的数据库信息：（示例）
 
 ```
-SQL_USERNAME='root' # 数据库的用户名
-SQL_PASSWORD='hitse2018' # 数据库的密码
-SQL_ADDRESS='139.199.75.35' # 数据库的地址
+SQL_USERNAME='YOUR USERNAME' # 数据库的用户名
+SQL_PASSWORD='YOUR PASSWORD' # 数据库的密码
+SQL_ADDRESS='YOUR ADDRESS' # 数据库的地址
 SQL_PORT='3306' # 数据库的端口号
 SQL_SCHEMA='se' # 使用的数据库的名称（schema）
 ```
@@ -170,9 +171,9 @@ SQL_SCHEMA='se' # 使用的数据库的名称（schema）
 修改`spiders/`下的`server_config.py`，将数据库信息写进文件：（示例）
 
 ```
-SQL_USERNAME='root' # 数据库的用户名
-SQL_PASSWORD='hitse2018' # 数据库的密码
-SQL_ADDRESS='139.199.75.35' # 数据库的地址
+SQL_USERNAME='YOUR USERNAME' # 数据库的用户名
+SQL_PASSWORD='YOUR PASSWORD' # 数据库的密码
+SQL_ADDRESS='YOUR ADDRESS' # 数据库的地址
 SQL_PORT='3306' # 数据库的端口号
 SQL_SCHEMA='se' # 使用的数据库的名称（schema）
 ```
