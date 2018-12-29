@@ -1,3 +1,12 @@
+# 目录
+[关于项目](#关于项目--皮划艇电影)  
+[此发布版本的改进](#此发布版本的改进)  
+[运行环境需求](#运行环境需求)  
+[各部分功能简介](#各部分功能简介)  
+[部署和使用指南](#部署和使用指南)  
+[制作人员/项目分工](#制作人员/项目分工（拼音序）)  
+[许可证](#许可证)
+
 # 关于项目--皮划艇电影
 ![皮划艇电影](footage.png)
 此项目为2018秋软件工程17组的课程项目。项目实现了一个简单的电影票房数据可视化系统，基于[Flask](http://flask.pocoo.org)、[jQuery](https://jquery.com)、[Materialize-UI](http://www.materializecss.cn/about.html)和[MySQL](https://www.mysql.com)构建，同时使用到了以下Python库：[PyMySQL](https://pypi.org/project/PyMySQL/)、[SQLAlchemy](https://www.sqlalchemy.org)、[Scrapy](https://scrapy.org/)、[BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/)、[Pandas](http://pandas.pydata.org)，以及以下Javascript库：[WordExport](https://github.com/Kent-Su/jquerty-wordExport)。项目演示时所用的数据来自[电影票房](http://58921.com)和[猫眼专业版](https://piaofang.maoyan.com/dashboard)。请遵循以上各自的使用条款，勿将此项目作为商业用途。
