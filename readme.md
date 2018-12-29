@@ -9,7 +9,7 @@
 
 # 关于项目--皮划艇电影
 ![皮划艇电影](footage.png)
-此项目为2018秋软件工程17组的课程项目。项目实现了一个简单的电影票房数据可视化系统，基于[Flask](http://flask.pocoo.org)、[jQuery](https://jquery.com)、[Materialize-UI](http://www.materializecss.cn/about.html)和[MySQL](https://www.mysql.com)构建，同时使用到了以下Python库：[PyMySQL](https://pypi.org/project/PyMySQL/)、[SQLAlchemy](https://www.sqlalchemy.org)、[Scrapy](https://scrapy.org/)、[BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/)、[Pandas](http://pandas.pydata.org)，以及以下Javascript库：[WordExport](https://github.com/Kent-Su/jquerty-wordExport)。项目演示时所用的数据来自[电影票房](http://58921.com)和[猫眼专业版](https://piaofang.maoyan.com/dashboard)。请遵循以上各自的使用条款，勿将此项目作为商业用途。
+此项目为2018秋软件工程17组的课程项目。项目实现了一个简单的电影票房数据可视化系统，基于[Flask](http://flask.pocoo.org)、[jQuery](https://jquery.com)、[Materialize-UI](http://www.materializecss.cn/about.html)和[MySQL](https://www.mysql.com)构建，同时使用到了以下Python库：[PyMySQL](https://pypi.org/project/PyMySQL/)、[SQLAlchemy](https://www.sqlalchemy.org)、[Scrapy](https://scrapy.org/)、[BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/)、[Pandas](http://pandas.pydata.org)，以及以下Javascript库：[WordExport](https://github.com/Kent-Su/jquerty-wordExport)。项目演示时所用的数据来自[电影票房](http://58921.com)和[猫眼专业版](https://piaofang.maoyan.com/dashboard)。项目中使用的图片素材来自The Verge。请遵循以上各自的使用条款，勿将此项目作为商业用途。
 
 # 此发布版本的改进
 ### 相对于此前在课上演示的版本，此发布版本有以下改进：
