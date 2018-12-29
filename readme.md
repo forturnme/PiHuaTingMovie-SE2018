@@ -187,5 +187,7 @@ SQL_SCHEMA='se' # 使用的数据库的名称（schema）
 刘颂唐：猫眼和58921爬虫；<br>
 周瑞：查询服务器（queryserver）和优化表设计。
 
+README By 龙瀚林
+
 # 许可证
 MIT License
