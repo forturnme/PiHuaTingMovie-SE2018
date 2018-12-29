@@ -183,7 +183,7 @@ SQL_SCHEMA='se' # 使用的数据库的名称（schema）
 # 制作人员/项目分工（拼音序）
 廖儒：report.html及相关Javascript脚本；<br>
 刘皓：登录服务器（loginserver）和服务器结构设计；<br>
-龙瀚林：项目设计、index.html及相关Javascript脚本；<br>
+龙瀚林：项目设计、index.html及相关Javascript脚本、实现方案指导；<br>
 刘颂唐：猫眼和58921爬虫；<br>
 周瑞：查询服务器（queryserver）和优化表设计。
 
