@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="overflow: hidden;">
+<head>
+	<link rel="icon" href="./60proj.png" type="image/x-icon" />
+	<link rel="shortcut icon" href="./60proj.png" type="image/x-icon"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>皮划艇电影</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://cdn.bootcss.com/materialize/0.97.8/css/materialize.min.css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+	<!-- echarts组件 -->
+	<script src="https://cdn.bootcss.com/zrender/4.0.5/zrender.min.js"></script>
+	<script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.min.js"></script>
+    <script src="./echarts/echarts-wordcloud.min.js"></script>
+</head>
+<body style="overflow: hidden;">
+	<!--  Scripts-->
+	<script src="server-config.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdn.bootcss.com/materialize/0.97.8/js/materialize.min.js"></script>
+	<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/charts.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/drawchart.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+	<!-- CSS -->
+	<style type="text/css">
+		.areatitle
+		{
+			margin: 0;
+		}
+	</style>
+	<!-- 跨平台导航栏 -->
+	<ul class="side-nav" id="mobile-nav">
+		<li><a onclick="toboxyear()" class="navli waves-effect waves-teal black-text">逐年票房</a></li>
+		<li><a onclick="togenre()" class="navli waves-effect waves-teal black-text">题材份额</a></li>
+		<li><a onclick="toboxking()" class="navli waves-effect waves-teal black-text">票房赢家</a></li>
+		<li><a onclick="toactor()" class="navli waves-effect waves-teal black-text">劳模演员</a></li>
+		<li><a onclick="tologin()" class="navli waves-effect waves-teal black-text">获取报表</a></li>
+	</ul>
+	<div class="navbar-fixed">
+		<nav class="white">
+			<div class="nav-wrapper container">
+				<div class="col s12">
+					<a href="#" class="brand-logo"><img src="./60proj.png"></a>
+					<a href="#" data-activates="mobile-nav" class="button-collapse waves-effect waves-teal">
+						<i class="material-icons black-text">menu</i>
+					</a>
+					<ul class="right hide-on-med-and-down">
+						<li class="navli waves-effect waves-teal"><a type="black-text" onclick="toboxyear()">逐年票房</a></li>
+						<li class="navli waves-effect waves-teal"><a type="black-text" onclick="togenre()">题材份额</a></li>
+						<li class="navli waves-effect waves-teal"><a type="black-text" onclick="toboxking()">票房赢家</a></li>
+						<li class="navli waves-effect waves-teal"><a type="black-text" onclick="toactor()">劳模演员</a></li>
+						<li class="navli waves-effect waves-teal"><a type="black-text" onclick="tologin()">获取报表</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div id="boxyeardiv">
+		<div class="tableonly" style="background: url(background4.jpg) center center no-repeat;background-size: cover;">
+			<div class="container">
+				<div class="row">
+					<h3 class="center white-text areatitle" style="text-shadow:3px 1px 4px #000000;"><br>票房走势</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="windowheighthalf white">
+			<div class="container">
+				<div class="section">
+					<div class="row">
+						<div class="col s6 mobileonly">
+							<h4>票房走势</h4>
+						</div>
+						<div class="input-field col s6">
+							<select id="boxyear-year" onchange="drawboxingyear()">
+								<option value="0" selected>全部</option>
+								<option value="2015">2015</option>
+								<option value="2016">2016</option>
+								<option value="2017">2017</option>
+								<option value="2018">2018</option>
+							</select>
+							<label>选择年份</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col chartarea dubw dubh hoverable" id='boxyear'></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 登录区 -->
+	<div class="windowheight" id="logindiv" style="background: url(The_Arrival_of_a_Train.jpg) center center no-repeat;background-size: cover;">
+		<div class="container">
+			<div id="login-section" class="section transparent white-text">
+				<h3 class="white-text center" style="text-shadow:3px 1px 4px #000000;">登录</h3>
+				<div class="row">
+					<div class="col s12 m2"></div>
+					<div class="col s12 m8 white z-depth-5">
+						<div class="input-field col s12">
+							<input id="username" type="text" class="validate black-text">
+							<label for="username">用户名</label>
+						</div>
+						<div class="input-field col s12">
+							<input id="password" type="password" class="validate black-text">
+							<label for="password">密码</label>
+						</div>
+						<div class="row">
+							<div class="col s12 m4"></div>
+							<div class="col s12 m7">
+								<!-- <button class="btn waves-effect waves-light" type="submit" name="action" onclick="todownload()"> -->
+								<button class="btn waves-effect waves-light" type="submit" name="action" onclick="dologin()">
+									登录
+									<i class="material-icons right">send</i>
+								</button>
+								<button class="btn-flat waves-effect waves-teal transparent" onclick="doregister()">
+									注册
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col s12 m2"></div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div id="genrediv">		
+		<div class="tableonly" style="background: url(background1.jpg) center center no-repeat;background-size: cover;">
+			<div class="container">
+				<div class="row">
+					<h3 class="center white-text areatitle" style="text-shadow:3px 1px 4px #000000;"><br>题材份额</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="windowheighthalf white">
+			<div class="container">
+				<div class="section">
+					<div class="row">
+						<div class="col s6 mobileonly">
+							<h4>题材份额</h4>
+						</div>
+						<div class="input-field col s3">
+							<select id="genre-year" onchange="drawgenre()">
+								<option value="2015">2015</option>
+								<option value="2016">2016</option>
+								<option value="2017">2017</option>
+								<option value="2018" selected>2018</option>
+							</select>
+							<label>选择年份</label>
+						</div>
+						<div class="input-field col s3">
+							<select id="genre-month" onchange="drawgenre()">
+								<option value="0" selected>全年</option>
+								<option value="21">第一季度</option>
+								<option value="1">一月</option>
+								<option value="2">二月</option>
+								<option value="3">三月</option>
+								<option value="22">第二季度</option>
+								<option value="4">四月</option>
+								<option value="5">五月</option>
+								<option value="6">六月</option>
+								<option value="23">第三季度</option>
+								<option value="7">七月</option>
+								<option value="8">八月</option>
+								<option value="9">九月</option>
+								<option value="24">第四季度</option>
+								<option value="10">十月</option>
+								<option value="11">十一月</option>
+								<option value="12">十二月</option>
+							</select>
+							<label>选择月份</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col chartarea hoverable" id='cgenre'></div>
+						<div class="col chartarea hoverable" id='cgenre-bar'></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="boxkingdiv">
+		<div class="tableonly" style="background: url(background2.jpg) center center no-repeat;background-size: cover;">
+			<div class="container">
+				<div class="row">
+					<h3 class="center white-text areatitle" style="text-shadow:3px 1px 4px #000000;"><br>票房赢家</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="windowheighthalf white">
+			<div class="container">
+				<div class="section">
+					<div class="row">
+						<div class="col s6 mobileonly">
+							<h4>票房赢家</h4>
+						</div>
+						<div class="input-field col s3">
+							<select id="boxking-year" onchange="drawbking()">
+								<option value="2015">2015</option>
+								<option value="2016">2016</option>
+								<option value="2017">2017</option>
+								<option value="2018" selected>2018</option>
+							</select>
+							<label>选择年份</label>
+						</div>
+						<div class="input-field col s3">
+							<select id="boxking-rank" onchange="drawbking()">
+								<option value="3" selected>3</option>
+								<option value="5">5</option>
+								<option value="10">10</option>
+								<option value="20">20</option>
+							</select>
+							<label>选择排名</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col chartarea hoverable" id='boxking'></div>
+						<div class="col chartarea hoverable" id='boxking-bar'></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="actordiv">
+		<div class="tableonly" style="background: url(background3.jpg) center center no-repeat;background-size: cover;">
+			<div class="container">
+				<div class="row">
+					<h3 class="center white-text areatitle" style="text-shadow:3px 1px 4px #000000;"><br>劳模演员</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="windowheighthalf white">
+			<div class="container">
+				<div class="section">
+					<div class="row">
+						<div class="col s6 mobileonly">
+							<h4>劳模演员</h4>
+						</div>
+						<div class="input-field col s6">
+							<select id="actoryear" onchange="drawactor()">
+								<option value="2015">2015</option>
+								<option value="2016">2016</option>
+								<option value="2017">2017</option>
+								<option value="2018" selected>2018</option>
+							</select>
+							<label>选择年份</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col chartarea hoverable" id='actorcloud'></div>
+						<div class="col chartarea hoverable" id="actor-bar"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 加载动画-模态 -->
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<h5 class="center teal-text">加载中...</h5>
+			<div class="progress">
+				<div class="indeterminate"></div>
+			</div>
+		</div>
+	</div>
+	<!-- 登录 模态 -->
+	<div id="modal-salt" class="modal">
+		<div class="modal-content">
+			<h5 class="center teal-text">加点调味料...</h5>
+			<div class="progress">
+				<div class="indeterminate"></div>
+			</div>
+		</div>
+	</div>
+	<div id="modal-postusr" class="modal">
+		<div class="modal-content">
+			<h5 class="center teal-text">文火烹调中...</h5>
+			<div class="progress">
+				<div class="indeterminate"></div>
+			</div>
+		</div>
+	</div>
+	<div id="modal-logerr" class="modal">
+		<div class="modal-content">
+			<h4 class="teal-text">信息</h4>
+			<p>用户名/密码好像不对？</p>
+		</div>
+		<div class="modal-footer">
+			<a class=" modal-action teal-text modal-close waves-effect waves-green btn-flat">同意</a>
+		</div>
+	</div>
+	<div id="modal-regerr" class="modal">
+		<div class="modal-content">
+			<h4 class="teal-text">信息</h4>
+			<p>用户名已被注册？</p>
+		</div>
+		<div class="modal-footer">
+			<a class=" modal-action teal-text modal-close waves-effect waves-green btn-flat">同意</a>
+		</div>
+	</div>
+	<div id="modal-regok" class="modal">
+		<div class="modal-content">
+			<h4 class="teal-text">信息</h4>
+			<p>注册成功，请登录？</p>
+		</div>
+		<div class="modal-footer">
+			<a class=" modal-action teal-text modal-close waves-effect waves-green btn-flat">同意</a>
+		</div>
+	</div>
+	<div id="modal-empty" class="modal">
+		<div class="modal-content">
+			<h4 class="teal-text">信息</h4>
+			<p>用户名/密码好像没有填写？</p>
+		</div>
+		<div class="modal-footer">
+			<a class=" modal-action teal-text modal-close waves-effect waves-green btn-flat">同意</a>
+		</div>
+	</div>
+
+</body>
+</html>
