@@ -89,6 +89,7 @@ Python 3.7以及以下Python库：Scrapy、SQLAlchemy、PyMySQL、Pandas、Beaut
 该项目用到了5个库，分别为`PASSWORDS`、`cleaned_movie_data`、`boxing_day`、`boxing_genre`和`boxing_month`，在本说明中它们均位于库`se`内。其中前两个需要事先手动建立，建立这两张表的SQL语句如下：
 
 （建立`PASSWORDS`）
+
 ```
 create table PASSWORDS (
 id INT(11),
@@ -99,6 +100,7 @@ vcode INT(11)
 ```
 
 （建立`cleaned_movie_data`）
+
 ```
 create table cleaned_movie_data (
 name text not null,
@@ -117,25 +119,25 @@ genre text
 #### 1. 在开始运行服务器前，您应当完成如下步骤：
 1. 修改`servers`目录下的数据库配置`server_config.py`，其中各字段含义如下：
 
-	```
+```
 SQL_USERNAME='root' # 数据库的用户名
 SQL_PASSWORD='hitse2018' # 数据库的密码
 SQL_ADDRESS='139.199.75.35' # 数据库的地址
 SQL_PORT='3306' # 数据库的端口号
 SQL_SCHEMA='se' # 使用的数据库的名称（schema）
-	```
+```
 2. 替换`servers`目录下`report.html`含有的服务器地址：
 
-	对于Windows Server用户，请执行以下Powershell命令：
+对于Windows Server用户，请执行以下Powershell命令：
 
-	```
+```
 (gc .\report.html) -replace '139.199.75.35', '你的服务器地址' | out-File report.html
-	```
-	对于Linux/Unix用户，请执行以下Shell命令：
+```
+对于Linux/Unix用户，请执行以下Shell命令：
 
-	```
+```
 sed -i 's/139.199.75.35/您的服务器地址/g' ./report.html
-	```
+```
 
 #### 2. 运行服务器：
 在`servers`目录下执行`sh run_server.sh`，即可启动查询和登录服务器。您可以分别在`qsrv.log`和`lsrv.log`中查看它们的日志。
@@ -152,13 +154,13 @@ sed -i 's/139.199.75.35/您的服务器地址/g' ./report.html
 5. 运行`python3 cookie_tool.py`，复制得到的输出，粘贴为`spiders/spider/server_config.py`里的`MY_COOKIE`字段；
 6. 修改`server_config.py`里的数据库信息：（示例）
 
-	```
+```
 SQL_USERNAME='root' # 数据库的用户名
 SQL_PASSWORD='hitse2018' # 数据库的密码
 SQL_ADDRESS='139.199.75.35' # 数据库的地址
 SQL_PORT='3306' # 数据库的端口号
 SQL_SCHEMA='se' # 使用的数据库的名称（schema）
-	```
+```
 
 完成后，在`spiders/spider/`下执行`python3 main.py`即可开始爬取并更新数据库。
 
